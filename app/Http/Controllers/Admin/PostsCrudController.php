@@ -18,7 +18,7 @@ class PostsCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Posts');
+        $this->crud->setModel('App\Post');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/posts');
         $this->crud->setEntityNameStrings('posts', 'posts');
 

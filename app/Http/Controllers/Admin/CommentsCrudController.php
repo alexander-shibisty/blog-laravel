@@ -18,7 +18,7 @@ class CommentsCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Comments');
+        $this->crud->setModel('App\Comment');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/comments');
         $this->crud->setEntityNameStrings('comments', 'comments');
 

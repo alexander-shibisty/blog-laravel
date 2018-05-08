@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Laracasts\TestDummy\Factory::$factoriesPath = 'database/factories';
+
         $this->call([
             PostsSeeder::class,
             CommentsSeeder::class,

@@ -9,6 +9,6 @@ class CommentsSeeder extends Seeder
 {
     public function run()
     {
-        TestDummy::times(20)->create('App\Comment');
+        factory(App\Comment::class, 50)->create();
     }
 }

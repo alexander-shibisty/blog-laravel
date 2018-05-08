@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PostsController@list')->name('index');
+Route::get('/post/{id}', 'PostsController@item')->name('post');
 
 Auth::routes();
 
