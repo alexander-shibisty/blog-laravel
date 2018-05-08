@@ -9,7 +9,7 @@
                 <a href="{{route('post', ['id' => $post->id])}}"><div class="card-header"><strong>{{$post->name}}</strong></div></a>
 
                 <div class="card-body">
-                    {{str_limit($post->content, 240, '...')}}<br>
+                    {{str_limit(strip_tags($post->content), 240, '...')}}<br>
                     <strong>{{$post->created_at}}</strong>
                 </div>
             </div>

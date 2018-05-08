@@ -28,7 +28,11 @@ class PostsCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        //$this->crud->setFromDb();
+
+        $this->columns();
+
+        $this->fields();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -115,5 +119,66 @@ class PostsCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+
+    private function columns() {
+        
+        $this->crud->addColumn([
+            'name' => 'name',
+            'label' => 'Название',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'content',
+            'label' => 'Текст',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'label' => 'Дата создания',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'updated_at',
+            'label' => 'Дата обновления',
+        ]);
+    }
+
+    private function fields() {
+        $this->crud->addField([
+            'name' => 'name',
+            'label' => 'Название',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'h1',
+            'label' => 'Meta: H1',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'title',
+            'label' => 'Meta: Заголовок',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'description',
+            'label' => 'Meta: Описание',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'content',
+            'label' => 'Контент',
+            'type' => 'ckeditor',
+        ]);
+
+        $this->crud->addField([
+            'name'        => 'publicated',
+            'label'       => 'Статус',
+            'type'        => 'radio',
+            'options'     => [
+                0 => "Draft",
+                1 => "Published",
+            ],
+        ]);
     }
 }

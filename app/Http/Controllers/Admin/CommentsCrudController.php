@@ -22,13 +22,17 @@ class CommentsCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/comments');
         $this->crud->setEntityNameStrings('comments', 'comments');
 
+        $this->columns();
+
+        $this->fields();
+
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        //$this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -115,5 +119,65 @@ class CommentsCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+
+    private function columns() {
+        
+        $this->crud->addColumn([
+            'name' => 'name',
+            'label' => 'Название',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'email',
+            'label' => 'E-mail',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'content',
+            'label' => 'Текст',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'label' => 'Дата создания',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'updated_at',
+            'label' => 'Дата обновления',
+        ]);
+    }
+
+    private function fields() {
+        $this->crud->addField([
+            'name' => 'name',
+            'label' => 'Название',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'content',
+            'label' => 'Контент',
+            'type' => 'textarea',
+        ]);
+
+        $this->crud->addField([
+            'name'        => 'publicated',
+            'label'       => 'Статус',
+            'type'        => 'radio',
+            'options'     => [
+                0 => "Draft",
+                1 => "Published",
+            ],
+        ]);
+
+        $this->crud->addField([   // Select
+            'label' => "Пост",
+            'type' => 'select',
+            'name' => 'post_id',
+            'entity' => 'post',
+            'attribute' => 'name',
+            'model' => "App\Post",
+        ]);
     }
 }

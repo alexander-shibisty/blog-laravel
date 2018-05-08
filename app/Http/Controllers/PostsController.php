@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function list()
     {
-        $posts = Post::select()->orderBy('id', 'DESC')->paginate(10);
+        $posts = Post::select()->where('publicated', 1)->orderBy('id', 'DESC')->paginate(10);
 
         View::share('title', 'Posts');
         View::share('description', 'Posts');

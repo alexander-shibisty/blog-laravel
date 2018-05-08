@@ -8,7 +8,7 @@
                 <h1 class="card-header">{{$post->h1}}</h1>
 
                 <div class="card-body">
-                    {{$post->content}}<br>
+                    {!! $post->content !!}<br>
                     <strong>{{$post->created_at}}</strong>
                 </div>
             </div>
