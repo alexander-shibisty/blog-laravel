@@ -35,7 +35,7 @@ class PostsController extends Controller
     }
 
     public function item(Request $request) {
-        $post = Post::where('id', $request->id)->firstOrFail();
+        $post = Post::where('id', $request->id)->where('publicated', 1)->firstOrFail();
 
         View::share('title', $post->title ? $post->title : $post->name);
         View::share('description', $post->description ? $post->description : str_limit($post->content, 200, '...'));

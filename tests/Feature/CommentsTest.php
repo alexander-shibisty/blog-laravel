@@ -13,8 +13,9 @@ class CommentsTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
-    {
-        $this->assertTrue(true);
+    public function testHaveComments() {
+        $response = $this->get(route('post', ['id' => \App\Post::where('posts.publicated', 0)->where('comments.publiceted', 1)->with('comments')->first()->id]));
+
+        $response->assertStatus(200);
     }
 }
