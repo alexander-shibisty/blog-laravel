@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 
+use View;
+
 class PostsController extends Controller
 {
     /**
@@ -26,11 +28,17 @@ class PostsController extends Controller
     {
         $posts = Post::select()->orderBy('id', 'DESC')->paginate(10);
 
+        View::share('title', 'Posts');
+        View::share('description', 'Posts');
+
         return view('posts', compact('posts'));
     }
 
     public function item(Request $request) {
         $post = Post::where('id', $request->id)->firstOrFail();
+
+        View::share('title', $post->title ? $post->title : $post->name);
+        View::share('description', $post->description ? $post->description : str_limit($post->content, 200, '...'));
 
         return view('post', compact('post'));
     }

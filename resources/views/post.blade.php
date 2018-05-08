@@ -8,12 +8,13 @@
                 <h1 class="card-header">{{$post->h1}}</h1>
 
                 <div class="card-body">
-                    {{$post->content}}
+                    {{$post->content}}<br>
+                    <strong>{{$post->created_at}}</strong>
                 </div>
             </div>
         </div>
 
-        @foreach($post->comments()->where('publicated', 1)->get() as $comment)
+        @foreach($post->comments()->where('publicated', 1)->orderBy('id', 'DESC')->get() as $comment)
         <div class="col-md-8">
             <div class="card">
                 <a href="{{route('post', ['id' => $post->id])}}"><div class="card-header"><strong>{{$comment->name}}</strong></div></a>
